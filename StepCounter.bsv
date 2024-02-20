@@ -29,9 +29,6 @@ module mkCounterEhr(StepCounter);
     endmethod
 endmodule
 
-
-
-
 // Reference implementation using only simple registers.
 (* synthesize *)
 module mkCounter(StepCounter);
@@ -49,6 +46,22 @@ module mkCounter(StepCounter);
         curVal <= newVal;
     endmethod
 endmodule
+
+/*
+ Q: Why does the reference implementation fail to meet the requirement?
+
+ A: TODO
+
+ Q: How do  the methods relate with regards to concurrency? Fill in
+ the following list. Replace ? with C, <, or >. Use C to indicate which 
+ methods conflict and cannot execute in the same cycle. Use < and > to
+ indicate the order the methods execute in the same cycle.
+
+ A: inc ? cur
+    inc ? set
+    cur ? set
+
+*/
 
 // Testbench (do not modify)
 module mkStepCounterTb(Empty);
