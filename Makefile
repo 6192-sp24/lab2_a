@@ -1,12 +1,14 @@
 .DEFAULT_GOAL := all
 BUILD_DIR=build
 BINARY_NAME=LabCounter CBuffer CBufferEhr
-BSC_FLAGS=--aggressive-conditions -vdir $(BUILD_DIR) -bdir $(BUILD_DIR) -simdir $(BUILD_DIR) -o 
+BSC_FLAGS=--aggressive-conditions --show-schedule -vdir $(BUILD_DIR) -bdir $(BUILD_DIR) -simdir $(BUILD_DIR) -o 
 
-.PHONY: clean all $(BINARY_NAME)
+.PHONY: clean all submit
 
+all: $(BINARY_NAME)
+	./LabCounter 2>&1 | tee output.log
 
-$(BINARY_NAME):
+$(BINARY_NAME): LabCounter.bsv
 	mkdir -p $(BUILD_DIR)
 	bsc $(BSC_FLAGS) $@ -verilog --show-schedule -g mk$@Tb -u $@.bsv
 	bsc $(BSC_FLAGS) $@ -sim -g mk$@Tb -u $@.bsv
@@ -19,5 +21,8 @@ clean:
 	rm -f *.o
 	rm -f *.sched
 
-all: clean $(BINARY_NAME)
+submit: all
+	git add -A
+	git commit -am "Save Changes & Submit"
+	git push
 
