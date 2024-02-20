@@ -1,6 +1,8 @@
 import Ehr::*;
 import StmtFSM::*;
 
+// Time Spent:
+
 interface LabCounter;
     method Action inc();
     method Bit#(32) cur();
