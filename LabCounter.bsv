@@ -3,28 +3,28 @@ import StmtFSM::*;
 
 // Time Spent:
 
-interface LabCounter;
+interface StepCounter;
     method Action inc();
     method Bit#(32) cur();
-    method Action set(Bit#(32) newvalue);
+    method Action set(Bit#(32) newVal);
 endinterface
 
 (* synthesize *)
-module mkCounterEhr(LabCounter);
+module mkCounterEhr(StepCounter);
     // TODO
 
     method Action inc();
-        // TODO
+        // TODO (remove noAction)
         noAction;
     endmethod
 
     method Bit#(32) cur();
-        // TODO
+        // TODO 
         return 0;
     endmethod
 
-    method Action set(Bit#(32) newvalue);
-        //TODO
+    method Action set(Bit#(32) newVal);
+        //TODO (remove noAction)
         noAction;
     endmethod
 endmodule
@@ -32,27 +32,27 @@ endmodule
 
 
 
-// Reference implementation using only registers.
+// Reference implementation using only simple registers.
 (* synthesize *)
-module mkCounter(LabCounter);
-    Reg#(Bit#(32)) cntSt <- mkReg(0); 
+module mkCounter(StepCounter);
+    Reg#(Bit#(32)) curVal <- mkReg(0); 
 
     method Action inc();
-        cntSt <= cntSt + 1;
+        curVal <= curVal + 1;
     endmethod
 
     method Bit#(32) cur();
-        return cntSt;
+        return curVal;
     endmethod
 
-    method Action set(Bit#(32) newvalue);
-        cntSt <= newvalue;
+    method Action set(Bit#(32) newVal);
+        curVal <= newVal;
     endmethod
 endmodule
 
 // Testbench (do not modify)
-module mkLabCounterTb(Empty);
-    LabCounter ehrized <- mkCounterEhr;
+module mkStepCounterTb(Empty);
+    StepCounter ehrized <- mkCounterEhr;
     Stmt test =
         (seq 
             action
