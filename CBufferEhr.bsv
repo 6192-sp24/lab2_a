@@ -6,12 +6,15 @@ import FIFO::*;
 typedef Bit#(3) Token;
 typedef Bit#(32) Response;
 
+// Time Spent:
+
 interface CBuffer;
     method ActionValue#(Token) getToken();
     method Action put(Token t, Response r);
     method ActionValue#(Response) getResult();
 endinterface
 
+(* synthesize *)
 module mkCBufferEhr(CBuffer);
     // TODO
     method ActionValue#(Token) getToken();
