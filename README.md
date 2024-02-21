@@ -4,7 +4,7 @@
 
 Clone your private repo by clicking on the green button that says "code". Next, click on SSH. Copy the ssh address. Now call `git clone git@github.com:6192-sp24/<lab>-<your github account name>.git`. You can paste the latter part of the command instead of typing it out, but it should be the same. Now move into the cloned directory to start working on the lab.
 
-# Part 1 : Step Counter
+# Part 1: Step Counter
 
 ## Scenario
 
@@ -32,13 +32,46 @@ set < cur
 
 In other words, `set` executes before `inc` and `inc` before `cur` (`set`<`inc`<`cur`). Use as many Ehr ports and registers as needed.
 
+## Ehr Register Syntax
+
+`Ehr#(3, Bit#(32)) example <- mkEhr(0);`
+
+The above line instantiates a 3 port Ehr register of size 32 bits. The default value of this register is 0. When using the ports, the Ehr port `0` will be used before port `1` and port `1` before port `2`.
+
+An example of this can be seen below:
+
+```
+Ehr#(3, Bit#(2)) cnt <- mkEhr(1);
+
+method one:
+    $display(cnt[0]);
+    cnt[0] <= cnt[0] + 1;
+
+method two:
+    $display(cnt[1]);
+    cnt[1] <= cnt[1] + 1;
+
+method three:
+    $display(cnt[2]);
+    cnt[2] <= 1;
+
+```
+
+This example code will print `1 2 3` when all three methods are executed within a single cycle. Here, the concurrency relation is:
+
+```
+one < two
+one < three
+two < three
+```
+
 ## Design Verification
 
 To verify your design call `make StepCounter` on your command line. It should automatically re-compile your design if there are updates and
 save the testbench output to the file `output.log`. It will also create a `mkCounterEhr.sched` file that you can inspect for the scheduling
 information.
 
-# Part 2 : Completion Buffer
+# Part 2: Completion Buffer
 
 ## Scenario A
 
@@ -70,13 +103,13 @@ endinterface
 ```
 
 - `getToken`: This method should return a unique token to the user.
-- `put`: This method should save `r` and assosciate it with the token, or user identifier, `t`.
-- `getResponse`: This method should return the response, or result, assosciated with the oldest user, or token.
+- `put`: This method should save `r` and associate it with the token, or user identifier, `t`.
+- `getResponse`: This method should return the response, or result, associated with the oldest user, or token.
 
 ## Design Notes A
 
 - You should use a single Vector to hold the responses for the tokens/users in your design. **What size should this Vector be to hold a response for every token/user?**
-- Remember that the testbench will call the methods as soon as their guards are true. This means that you are responsible for making sure that the response/result assosciated with a token/user is valid/ready.
+- Remember that the testbench will call the methods as soon as their guards are true. This means that you are responsible for making sure that the response/result associated with a token/user is valid/ready.
 - Do not worry about `put` being called with an invalid token/user.
 - Again, do NOT worry about concurrency for this design. Only use simple registers for this design.
 
