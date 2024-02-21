@@ -11,7 +11,7 @@ typedef Bit#(32) Response;
 interface CBuffer;
     method ActionValue#(Token) getToken();
     method Action put(Token t, Response r);
-    method ActionValue#(Response) getResult();
+    method ActionValue#(Response) getResponse();
 endinterface
 
 (* synthesize *)
@@ -28,7 +28,7 @@ module mkCBufferReg(CBuffer);
         noAction;
     endmethod
 
-    method ActionValue#(Response) getResult();
+    method ActionValue#(Response) getResponse();
         // TODO
         noAction;
         return 0;
@@ -78,7 +78,7 @@ module mkCBufferTb(Empty);
     endrule
 
     rule get_resp;
-        let x <- dut1.getResult();
+        let x <- dut1.getResponse();
         let y = tok.first();
         tok.deq();
         if (truncate(x) != y) begin 
