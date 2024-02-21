@@ -6,12 +6,15 @@ import FIFO::*;
 typedef Bit#(3) Token;
 typedef Bit#(32) Response;
 
+// Time Spent:
+
 interface CBuffer;
     method ActionValue#(Token) getToken();
     method Action put(Token t, Response r);
     method ActionValue#(Response) getResult();
 endinterface
 
+(* synthesize *)
 module mkCBufferReg(CBuffer);
     // TODO
     method ActionValue#(Token) getToken();
@@ -31,6 +34,13 @@ module mkCBufferReg(CBuffer);
         return 0;
     endmethod
 endmodule
+
+/* 
+ Q: What is the concurrency relation of your methods?
+
+ A:
+
+*/
 
 /////// Testing infrastructure below
 module mkCBufferTb(Empty);
