@@ -152,7 +152,7 @@ To submit your completed lab we ask that you stage, commit, and push your change
 To do this you should only need to call `make submit`. After doing so, your entire directory should be uploaded to your private git-repo on Github Classroom. Upon submission,
 Github will automatically test & verify that your design runs correctly. You should see a green checkmark next to the commit titled "Save Changes & Submit" if your design passes Github's testcase. A yellow circle means the test is still pending and a red cross means the test failed. If your design passes locally, but not on Github, let the course staff know as this should not happen.
 
-Please take some time to fill out the [feedback form] TODO. We really appreciate it!
+Please take some time to fill out the [feedback form](https://docs.google.com/forms/d/e/1FAIpQLSebf57zYacBZSh-ObykR0GLBqj8uJ6pKoKlmODVMXdS_aj3JA/viewform?usp=sf_link). We really appreciate it!
 
 Should you need more guidance with git, please contact the course staff or see our piazza post: https://piazza.com/class/lrgt0dgrtpz590/post/27.
 
