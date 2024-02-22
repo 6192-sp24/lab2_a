@@ -89,7 +89,7 @@ module mkCBufferTb(Empty);
         end
         resp <= resp - 1;
         if (resp == 1) begin
-                $display("Test passed in %d cycles",tic);
+                $display("CBufferTest passed in %d cycles",tic);
                 $finish(0);
         end
     endrule

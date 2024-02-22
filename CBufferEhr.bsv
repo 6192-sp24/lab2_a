@@ -64,7 +64,7 @@ module mkCBufferEhrTb(Empty);
         let y <- response();
         if ( y != -1) begin 
             Bit#(3) ty = truncate(y);
-            $display("Completion buffer receive response corresponding to token: %d", ty);
+            $display("Completion buffer received response corresponding to token: %d", ty);
             dut1.put(ty, y);
         end
     endrule
@@ -81,7 +81,7 @@ module mkCBufferEhrTb(Empty);
         end
         resp <= resp - 1;
         if (resp == 1) begin
-                $display("Test passed in %d cycles",tic);
+                $display("CBufferEhrTest passed in %d cycles",tic);
                 $finish(0);
         end
     endrule

@@ -67,7 +67,7 @@ two < three
 
 ## Design Verification
 
-To verify your design call `make StepCounter` on your command line. It should automatically re-compile your design if there are updates and
+To verify your design call `make StepCounterTest` on your command line. It should automatically re-compile your design if there are updates and
 save the testbench output to the file `output.log`. It will also create a `mkCounterEhr.sched` file that you can inspect for the scheduling
 information.
 
@@ -115,7 +115,7 @@ endinterface
 
 ## Design Verification A
 
-You can test your code by running `make CBuffer`. It should automatically re-compile your design if there are updates and
+You can test your code by running `make CBufferTest`. It should automatically re-compile your design if there are updates and
 save the testbench output to the file `output.log`. It will also create a `mkCBufferReg.sched` file that you can inspect for the scheduling
 information.
 
@@ -141,7 +141,7 @@ In other words, `getToken` executes before `put` and `put` before `getResponse` 
 
 ## Design Verification B
 
-You can test your code by running `make CBufferEhr`. It should automatically re-compile your design if there are updates and
+You can test your code by running `make CBufferEhrTest`. It should automatically re-compile your design if there are updates and
 save the testbench output to the file `output.log`. It will also create a `mkCBufferEhr.sched` file that you can inspect for the scheduling
 information.
 

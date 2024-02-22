@@ -97,7 +97,7 @@ module mkStepCounterTb(Empty);
                 end
             endaction
             action
-                $display("Test passed");
+                $display("StepCounterTest passed");
                 $finish(0);
             endaction
         endseq);
